@@ -1,7 +1,15 @@
 package com.pratice.student.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+@RequiredArgsConstructor
+@Builder
+@Getter
+@Setter
 @Entity
 @Table(name = "course")
 public class Course {
@@ -11,6 +19,7 @@ public class Course {
 
     private String courseName;
 
-    @JoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
 }
