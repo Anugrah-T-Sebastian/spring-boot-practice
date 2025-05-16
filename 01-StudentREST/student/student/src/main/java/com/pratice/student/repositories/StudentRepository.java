@@ -15,4 +15,15 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Course> findCourseById(@Param("studentId") Long studentId);
 
     Student findStudentById(Long studentId);
+
+    List<Student> findByCoursesCourseId(Long courseId);
+
+    @Query("SELECT s FROM Student s JOIN s.course c WHERE c.courseId = :courseId")
+    List<Student> findByCourses_CourseId(@Param("courseId") Long courseId);
+
+    @Query("SELECT DISTINCT s FROM Student s LEFT JOIN FETCH s.courses")
+    List<Student> findAllWithCourse();
+
+    @Query("SELECT s.c")
+    List<Course> findWithCoursesById();
 }

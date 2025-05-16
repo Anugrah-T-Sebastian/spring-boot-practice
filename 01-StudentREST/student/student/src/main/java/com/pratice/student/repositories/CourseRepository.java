@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
-    List<Course> findAllByStudent(Student studentById);
+    List<Course> findByStudent(Student student);
+
+    void deleteByStudent(Student student);
 }
