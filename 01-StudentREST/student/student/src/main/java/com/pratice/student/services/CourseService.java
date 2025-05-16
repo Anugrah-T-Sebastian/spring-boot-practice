@@ -16,13 +16,19 @@ import java.util.List;
 public class CourseService {
     private final CourseRepository courseRepository;
 
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public List<Course> getCourseForStudent(Student studentById) {
-        return courseRepository.findAllByStudent(studentById);
+    public List<Course> getCoursesForStudent(Student student) {
+        return courseRepository.findByStudent(student);
     }
 
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    @Transactional
     public List<Course> createCoursesForStudent(List<Course> studentCourses) {
         return courseRepository.saveAll(studentCourses);
     }
+
+    @Transactional
+    public void deleteCoursesForStudent(Student student) {
+        courseRepository.deleteByStudent(student);
+    }
+
+
 }
